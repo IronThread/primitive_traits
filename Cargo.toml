@@ -1,0 +1,13 @@
+[package]
+name = "primitive_traits" 
+version = "0.1.0" 
+authors = ["IronThread <santinofuenteskillian@gmail.com>"]
+edition = "2018"
+license = "Unlicense"
+readme = "README.md"
+description = "This crate implements traits for primitives as Unsigned and RawPointer."
+repository = "https://github.com/IronThread/primitive_traits"
+keywords = ["primitive","trait","integer","unsized"]
+categories = ["no-std"]
+
+[dependencies]
