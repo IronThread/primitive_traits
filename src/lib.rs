@@ -8,7 +8,7 @@ use core::any::Any;
 use core::default::Default;
 use core::fmt::{Binary, Debug, Display, LowerExp, LowerHex, Octal, Pointer, UpperExp, UpperHex};
 use core::hash::Hash;
-use core::iter::{Product, Step, Sum};
+use core::iter::{Product, Sum};
 use core::ops::{
     Add, AddAssign, BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Div, DivAssign,
     Mul, MulAssign, Neg, Not, Rem, RemAssign, Shl, ShlAssign, Shr, ShrAssign, Sub, SubAssign,
@@ -27,7 +27,6 @@ pub trait Integer:
     + UpperHex
     + Octal
     + Product
-    + Step
     + FromStr
     + Default
     + Debug
@@ -112,7 +111,6 @@ pub trait Integer:
     + BitAndAssign
     + Sum
     + From<i8>
-    + From<u8>
     + From<bool>
     + Into<i128>
 {
@@ -143,7 +141,6 @@ pub trait Unsigned:
     + UpperHex
     + Octal
     + Product
-    + Step
     + FromStr
     + Default
     + PartialEq
@@ -272,8 +269,6 @@ pub trait Float:
     + UpperExp
     + From<u8>
     + From<u16>
-    + Into<u16>
-    + Into<i16>
 {
     /// Identity method with the only purporse of make this safe as a trait object,althought this
     /// could already have been done by the supertraits.
@@ -287,16 +282,9 @@ impl Float for f32 {}
 impl Float for f64 {}
 
 pub trait RawPointer<T: ?Sized>:
-    Any + Clone + Copy + PartialEq + Eq + PartialOrd + Ord + Pointer
-{
-    /// Identity method with the only purporse of make this safe as a trait object,althought this
-    /// could already have been done by the supertraits.
-    #[doc(hidden)]
-    fn i(&self) -> &Self {
-        self
-    }
-}
+    Clone + Copy + PartialEq + Eq + PartialOrd + Ord + Pointer
+{}
 
-impl<T: ?Sized> RawPointer for *const T {}
-impl<T: ?Sized> RawPointer for *mut T {}
-impl<T: ?Sized> RawPointer for NonNull<T> {}
+impl<T: ?Sized> RawPointer<T> for *const T {}
+impl<T: ?Sized> RawPointer<T> for *mut T {}
+impl<T: ?Sized> RawPointer<T> for NonNull<T> {}
