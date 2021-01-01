@@ -1,5 +1,5 @@
 [package]
-name = "primitive_traits" 
+name = "primitive_traits2" 
 version = "0.1.0" 
 authors = ["IronThread <santinofuenteskillian@gmail.com>"]
 edition = "2018"
